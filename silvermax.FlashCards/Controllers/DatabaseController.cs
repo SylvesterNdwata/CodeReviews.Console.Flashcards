@@ -41,8 +41,18 @@ internal class DatabaseController
                         )
                     END";
 
+            string createSessionTableSql = @"
+                    IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Sessions')
+                    BEGIN
+                        CREATE TABLE Sessions (
+                            Id INT PRIMARY KEY IDENTITY(1,1),
+                            Date DATETIME2 NOT NULL,
+                            Score INT NOT NULL
+                        )
+                    END";
             connection.Execute(createStackTableSql);
             connection.Execute(createCardTableSql);
+            connection.Execute(createSessionTableSql);
         }
     }
 }

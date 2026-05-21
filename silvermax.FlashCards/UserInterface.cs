@@ -11,6 +11,7 @@ internal class UserInterface
         DatabaseController controller = new();
         FlashCardController flashCardController = new();
         StacksController stacksController = new();
+        StudySession session = new();
 
         controller.InitTables();
 
@@ -33,6 +34,14 @@ internal class UserInterface
                 case MenuOptions.ManageStacks:
                     stacksController.GetAllStacks();
                     stacksController.Start();
+                    break;
+
+                case MenuOptions.Study:
+                    session.Study();
+                    break;
+
+                case MenuOptions.ViewStudySessionData:
+                    session.ViewStudySessionData();
                     break;
 
                 case MenuOptions.exit:
